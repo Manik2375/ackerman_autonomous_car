@@ -24,6 +24,7 @@ setup(
         'console_scripts': [
             'keyboard_controller_node = keyboard_controller.keyboard_controller_node:main',
             'gamepad_controller_node = keyboard_controller.gamepad_controller_node:main',
+            'safety_filter_node = keyboard_controller.safety_filter_node:main',
         ],
     },
 )

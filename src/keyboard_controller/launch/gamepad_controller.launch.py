@@ -9,5 +9,8 @@ def generate_launch_description() -> LaunchDescription:
             executable='gamepad_controller_node',
             name='gamepad_controller',
             output='screen',
+            parameters=[
+                {'cmd_topic': '/teleop_cmd_vel'}
+            ]
         ),
     ])
