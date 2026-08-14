@@ -1,0 +1,158 @@
+<?xml version="1.0" ?>
+<robot name="hiwonder_ackermann">
+
+  <!-- ============================================== -->
+  <!-- MATERIALS -->
+  <!-- ============================================== -->
+  <material name="black">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.2 0.4 0.8 0.6"/>
+  </material>
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 1.0"/>
+  </material>
+
+  <!-- ============================================== -->
+  <!-- BASE FOOTPRINT (The ground directly under the car) -->
+  <!-- ============================================== -->
+  <link name="base_footprint"/>
+
+  <!-- ============================================== -->
+  <!-- BASE LINK (Dead-center of the rear axle) -->
+  <!-- ============================================== -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <!-- A small red box to visually mark the axle center -->
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <!-- The rear axle is lifted off the ground by the wheel's radius (3.5cm) -->
+    <origin xyz="0.0 0.0 0.035" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ============================================== -->
+  <!-- CHASSIS LINK (The physical collision body) -->
+  <!-- ============================================== -->
+  <link name="chassis_link">
+    <visual>
+      <geometry>
+        <box size="0.27 0.12 0.055"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.27 0.12 0.055"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis_link"/>
+    <!-- Placed 8.5cm forward to center the 27cm box between the axles -->
+    <origin xyz="0.085 0.0 0.0125" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ============================================== -->
+  <!-- LASER LINK (The RPLIDAR A1 M8) -->
+  <!-- ============================================== -->
+  <link name="laser_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.02"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+    <!-- Positioned 17.5cm forward, 7cm up, and rotated exactly 180 degrees -->
+    <origin xyz="0.175 0.0 0.07" rpy="0 0 3.14159"/>
+  </joint>
+
+  <!-- ============================================== -->
+  <!-- REAR LEFT WHEEL -->
+  <!-- ============================================== -->
+  <link name="rear_left_wheel">
+    <visual>
+      <geometry>
+        <!-- 7cm diameter, assumed 2.5cm thickness -->
+        <cylinder radius="0.035" length="0.025"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="rear_left_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_left_wheel"/>
+    <!-- Shifted left by half the track width (17.5cm / 2 = 8.75cm). Rotated 90 deg around X. -->
+    <origin xyz="0.0 0.0875 0.0" rpy="1.5708 0 0"/>
+  </joint>
+
+  <!-- ============================================== -->
+  <!-- REAR RIGHT WHEEL -->
+  <!-- ============================================== -->
+  <link name="rear_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.025"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="rear_right_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_right_wheel"/>
+    <!-- Shifted right by half the track width. -->
+    <origin xyz="0.0 -0.0875 0.0" rpy="1.5708 0 0"/>
+  </joint>
+
+  <!-- ============================================== -->
+  <!-- FRONT LEFT WHEEL -->
+  <!-- ============================================== -->
+  <link name="front_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.025"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="front_left_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_left_wheel"/>
+    <!-- Shifted forward by the 17cm wheelbase, and left by half the track width. -->
+    <origin xyz="0.17 0.0875 0.0" rpy="1.5708 0 0"/>
+  </joint>
+
+  <!-- ============================================== -->
+  <!-- FRONT RIGHT WHEEL -->
+  <!-- ============================================== -->
+  <link name="front_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.025"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="front_right_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_right_wheel"/>
+    <!-- Shifted forward by the wheelbase, and right by half the track width. -->
+    <origin xyz="0.17 -0.0875 0.0" rpy="1.5708 0 0"/>
+  </joint>
+
+</robot>
