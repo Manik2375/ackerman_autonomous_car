@@ -66,7 +66,7 @@
   <!-- ============================================== -->
   <!-- LASER LINK (The RPLIDAR A1 M8) -->
   <!-- ============================================== -->
-  <link name="laser_link">
+<link name="laser">
     <visual>
       <geometry>
         <cylinder radius="0.035" length="0.02"/>
@@ -77,9 +77,9 @@
 
   <joint name="laser_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="laser_link"/>
+    <child link="laser"/>
     <!-- Positioned 17.5cm forward, 7cm up, and rotated exactly 180 degrees -->
-    <origin xyz="0.175 0.0 0.07" rpy="0 0 3.14159"/>
+    <origin xyz="0.175 0.0 0.092" rpy="0 0 3.14159"/>
   </joint>
 
   <!-- ============================================== -->

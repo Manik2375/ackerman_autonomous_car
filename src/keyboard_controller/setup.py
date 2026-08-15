@@ -25,6 +25,9 @@ setup(
             'keyboard_controller_node = keyboard_controller.keyboard_controller_node:main',
             'gamepad_controller_node = keyboard_controller.gamepad_controller_node:main',
             'safety_filter_node = keyboard_controller.safety_filter_node:main',
+            'gamepad_teleop = keyboard_controller.gamepad_teleop:main',
+            
+            
         ],
     },
 )
